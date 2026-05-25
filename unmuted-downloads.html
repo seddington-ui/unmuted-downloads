@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unmuted — Name the Story You Carry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --noir: #131313;
+            --pink: #F7559A;
+            --silver: #AAABAB;
+            --cream: #F9F7F4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--cream);
+            color: var(--noir);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* HEADER / HERO */
+        .hero {
+            background: var(--noir);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(247, 85, 154, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-tagline {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--pink);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin: 1rem 0;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--silver);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 0.9rem;
+            color: var(--silver);
+            margin-top: 2rem;
+            font-style: italic;
+        }
+
+        /* MAIN CONTENT */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        section {
+            margin-bottom: 5rem;
+        }
+
+        /* ABOUT SECTION */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--noir);
+        }
+
+        .about-text p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            color: #444;
+            line-height: 1.8;
+        }
+
+        .about-highlight {
+            background: var(--pink);
+            color: white;
+            padding: 2rem;
+            border-radius: 0;
+            margin: 2rem 0;
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-visual {
+            background: linear-gradient(135deg, var(--noir) 0%, #2a2a2a 100%);
+            padding: 3rem;
+            position: relative;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-visual::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 2px solid var(--pink);
+            opacity: 0.5;
+        }
+
+        .about-visual-text {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: var(--pink);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* DOWNLOAD SECTION */
+        .downloads {
+            background: white;
+            padding: 3rem;
+            margin: 3rem 0;
+        }
+
+        .downloads h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--noir);
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .download-card {
+            border: 2px solid var(--noir);
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .download-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(247, 85, 154, 0.2);
+            border-color: var(--pink);
+        }
+
+        .download-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--noir);
+        }
+
+        .download-card-subtitle {
+            font-size: 0.85rem;
+            color: var(--silver);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .download-card p {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            background: var(--noir);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 2px solid var(--noir);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background: var(--pink);
+            border-color: var(--pink);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--noir);
+        }
+
+        .btn-secondary:hover {
+            background: var(--pink);
+            color: white;
+            border-color: var(--pink);
+        }
+
+        /* SESSION FORMAT */
+        .session-format {
+            background: var(--noir);
+            color: white;
+            padding: 4rem 2rem;
+            margin: 5rem -2rem;
+        }
+
+        .session-format h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .format-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .format-item {
+            border-left: 3px solid var(--pink);
+            padding-left: 2rem;
+        }
+
+        .format-item h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--pink);
+        }
+
+        .format-item p {
+            font-size: 0.95rem;
+            color: var(--silver);
+            line-height: 1.8;
+        }
+
+        /* PRINTING SPECS */
+        .printing-specs {
+            background: #f0f0f0;
+            padding: 3rem;
+            margin: 3rem 0;
+        }
+
+        .printing-specs h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--noir);
+        }
+
+        .specs-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .spec-item {
+            padding: 1rem;
+            background: white;
+            border-left: 3px solid var(--pink);
+        }
+
+        .spec-label {
+            font-weight: 600;
+            color: var(--noir);
+            margin-bottom: 0.25rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .spec-value {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* FACILITATOR RESOURCES */
+        .resources {
+            margin: 5rem 0;
+        }
+
+        .resources h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--noir);
+        }
+
+        .resource-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .resource-card {
+            background: white;
+            padding: 2rem;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .resource-card h4 {
+            color: var(--pink);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .resource-card p {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .resource-card a {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background: var(--noir);
+            color: white;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .resource-card a:hover {
+            background: var(--pink);
+        }
+
+        /* CONTACT SECTION */
+        .contact {
+            background: var(--noir);
+            color: white;
+            padding: 4rem 2rem;
+            margin: 5rem -2rem 0;
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info h3 {
+            color: var(--pink);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-info p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-top: 1rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--silver);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: var(--silver);
+        }
+
+        .contact-form button {
+            padding: 0.9rem 2rem;
+            background: var(--pink);
+            color: var(--noir);
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background: white;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--noir);
+            color: var(--silver);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--pink);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .about-visual {
+                aspect-ratio: auto;
+                min-height: 300px;
+            }
+
+            .download-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .format-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .resource-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .specs-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content {
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        section {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        section:nth-child(1) { animation-delay: 0.2s; }
+        section:nth-child(2) { animation-delay: 0.3s; }
+        section:nth-child(3) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-tagline">#ShatterTheStigma</div>
+            <h1>Unmuted</h1>
+            <p>Name the Story You Carry</p>
+            <p class="hero-subtitle">A structured reflection worksheet for participants and facilitators</p>
+        </div>
+    </section>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+        <!-- ABOUT -->
+        <section class="about">
+            <div class="about-text">
+                <h2>Why This Worksheet Exists</h2>
+                <p>Mental health stigma persists partly because people who have lived it are rarely given the structured, unhurried space to name their own experience before being asked to share it.</p>
+                <div class="about-highlight">
+                    "The worksheet is a reflection tool, not a disclosure tool."
+                </div>
+                <p><strong>Unmuted</strong> is designed to help participants move from lived experience toward meaning-making, context, audience awareness, and intentional impact. Each prompt is deliberately sequenced. No one is asked to share unless they choose to.</p>
+            </div>
+            <div class="about-visual">
+                <div class="about-visual-text">
+                    60-Minute<br>Impact Session<br>
+                    <span style="display: block; margin-top: 1rem; font-size: 0.8rem;">Breakout · Workshop · Reflection</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- DOWNLOADS -->
+        <section class="downloads">
+            <h2>Download Your Worksheet</h2>
+            <div class="download-grid">
+                <div class="download-card">
+                    <h3>BGB Edition</h3>
+                    <div class="download-card-subtitle">Branded · Noir + Pink</div>
+                    <p>Full-color, professionally designed for the BGB brand aesthetic. Recommended for premium print or digital distribution.</p>
+                    <a href="#" class="btn">Download BGB PDF</a>
+                </div>
+                <div class="download-card">
+                    <h3>NAMICon Edition</h3>
+                    <div class="download-card-subtitle">Conference · Cream + Teal</div>
+                    <p>Optimized for NAMICon 2026 attendees and broader conference distribution. Clean, conference-ready design.</p>
+                    <a href="#" class="btn">Download NAMICon PDF</a>
+                </div>
+            </div>
+
+            <!-- PRINTING SPECS -->
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-top: 3rem; margin-bottom: 1.5rem; color: var(--noir);">Printing Specifications</h3>
+            <div class="specs-list">
+                <div class="spec-item">
+                    <div class="spec-label">Trim Size</div>
+                    <div class="spec-value">8.5" × 11" (US Letter)</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Pages</div>
+                    <div class="spec-value">9 pages</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Paper Weight</div>
+                    <div class="spec-value">80–100 lb text</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Paper Color</div>
+                    <div class="spec-value">Bright white or cream (uncoated)</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Resolution</div>
+                    <div class="spec-value">Print-ready at 300 DPI</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-label">Binding</div>
+                    <div class="spec-value">Saddle-stitch or corner staple</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SESSION FORMAT -->
+        <section class="session-format">
+            <h2>The 60-Minute Arc</h2>
+            <div class="format-grid">
+                <div class="format-item">
+                    <h3>Welcome + Grounding (10 min)</h3>
+                    <p>Establish consent. Lead a three-breath grounding. Set the tone: slow, quiet, unhurried.</p>
+                </div>
+                <div class="format-item">
+                    <h3>Five Guided Prompts (35 min)</h3>
+                    <p>Silent writing on: story carried, lessons learned, identity + context, audience, impact.</p>
+                </div>
+                <div class="format-item">
+                    <h3>Framework Walk-Through (6 min)</h3>
+                    <p>Introduce the Unmuted Narrative Framework (A–E) as optional scaffolding for future sharing.</p>
+                </div>
+                <div class="format-item">
+                    <h3>Closing Reflection (9 min)</h3>
+                    <p>"Your story is not just personal — it is a catalyst." Aftercare resources shared aloud.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FACILITATOR RESOURCES -->
+        <section class="resources">
+            <h2>Facilitator Resources</h2>
+            <div class="resource-cards">
+                <div class="resource-card">
+                    <h4>Facilitator's Note</h4>
+                    <p>Complete run-of-show, language samples, core principles, and facilitation tips.</p>
+                    <a href="#">Download (BGB)</a>
+                </div>
+                <div class="resource-card">
+                    <h4>Facilitator's Note</h4>
+                    <p>Complete run-of-show, language samples, core principles, and facilitation tips.</p>
+                    <a href="#">Download (NAMICon)</a>
+                </div>
+                <div class="resource-card">
+                    <h4>Cheat Sheet</h4>
+                    <p>One-page quick reference: timing, opening language, closing language, and aftercare.</p>
+                    <a href="#">Download PDF</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- CONTACT / REQUEST PHYSICAL COPIES -->
+    <section class="contact">
+        <div class="contact-content">
+            <h2>Request Physical Copies or Facilitator Support</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>For Large Orders</h3>
+                    <p><strong>Bulk printing & fulfillment available for:</strong></p>
+                    <p>
+                        • NAMICon 2026 attendees<br>
+                        • Military-affiliated nonprofits<br>
+                        • Educational institutions<br>
+                        • Corporate wellness programs<br>
+                        • Conference breakout sessions
+                    </p>
+                    <p><strong>Custom printing, binding, and delivery available upon request.</strong></p>
+                </div>
+                <div class="contact-form">
+                    <form name="unmuted-contact" method="POST" netlify>
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Your name">
+
+                        <label for="org">Organization *</label>
+                        <input type="text" id="org" name="org" required placeholder="Organization or affiliation">
+
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="your@email.com">
+
+                        <label for="message">Your Request *</label>
+                        <textarea id="message" name="message" rows="4" required placeholder="Tell us about your printing, facilitation, or partnership needs..."></textarea>
+
+                        <button type="submit">Send Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Unmuted · Storytelling as a Tool for Stigma Shattering & System Shifting</p>
+        <p style="margin-top: 1rem;">
+            <strong>BGB</strong> · Advocacy · Legacy · Branding · <strong>#ShatterTheStigma</strong>
+        </p>
+        <p style="margin-top: 1rem; font-size: 0.75rem;">
+            © 2026 Unmuted. Designed for NAMICon 2026 and mental health advocates worldwide.
+        </p>
+    </footer>
+</body>
+</html>
